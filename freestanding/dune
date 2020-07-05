@@ -1,0 +1,14 @@
+(copy_files# ../src/clock.c)
+
+(library
+ (name landmarks_freestanding)
+ (public_name landmarks.freestanding)
+ (optional)
+ (libraries ocaml-freestanding)
+ (foreign_stubs
+  (language c)
+  (names clock)
+  (flags (:standard) (:include cflags-freestanding.sexp)))
+)
+
+(rule (with-stdout-to cflags-freestanding.sexp (run ./cflags.sh)))
